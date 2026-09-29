@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helm_repository.yaml
   - helm_release.yaml
-#  - pool.yaml
+  - pool.yaml
