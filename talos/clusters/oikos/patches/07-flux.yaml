@@ -1,0 +1,4 @@
+apiVersion: v1alpha1
+kind: KubeExternalManifestConfig
+name: flux
+url: "https://github.com/fluxcd/flux2/releases/latest/download/install.yaml"

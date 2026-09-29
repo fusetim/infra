@@ -1,3 +1,4 @@
+# Schematic ID: 6967594f347dfe304c0012baccf9fdae236262f94588e3a3814af9f5566968db
 overlay:
     image: siderolabs/sbc-raspberrypi
     name: rpi_generic

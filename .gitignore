@@ -3,7 +3,7 @@ talos/clusters/oikos/generated/*
 
 # Never accidentally commit plaintext secrets
 talos/clusters/oikos/secrets/*
-
+!talos/clusters/oikos/secrets/*.sops.yaml
 # Local Talos state
 .talos/
 
