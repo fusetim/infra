@@ -21,9 +21,6 @@ $ talosctl apply-config \
     --file talos/clusters/oikos/generated/controlplane-patched.yaml
 ```
 
-**Important:** If it is a new cluster, you must apply controlplane-bootstrap.yaml first, and 
-let flux install cilium first. Only then can you apply controlplane-patched.yaml, otherwise the cluster will not be able to start.
-
 *Generate the talosctl config and kubectl config:*
 ```bash
 $ export TALOSCONFIG="$PWD/talos/clusters/oikos/generated/talosconfig"

@@ -55,19 +55,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-talosctl machineconfig patch \
-    "$OUTPUT_DIR/controlplane.yaml" \
-    --patch "@$CLUSTER_PATH/patches/01-install.yaml" \
-    --patch "@$CLUSTER_PATH/patches/02-schedule-on-controlplanes.yaml" \
-    --patch "@$CLUSTER_PATH/patches/03-dualstack.yaml" \
-    --patch "@$CLUSTER_PATH/patches/04-hostname-athena.yaml" \
-    --patch "@$CLUSTER_PATH/patches/06-flux.yaml" \
-    --patch "@$CLUSTER_PATH/patches/07-time.yaml" \
-    --output "$OUTPUT_DIR/controlplane-bootstrap.yaml"
-
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to patch Talos config for bootstrap."
-    exit 1
-fi
-
 echo "Talos config generation and patching completed. Patched config is available at '$OUTPUT_DIR/controlplane-patched.yaml'."
