@@ -1,0 +1,21 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: edge-proxy
+  namespace: default
+spec:
+  # Without this the generated Service defaults to SingleStack/IPv4, so its
+  # endpoints are the proxy's v4 pod IP only. Cilium still publishes the v6
+  # address from the LB-IPAM pool, but the resulting frontend has no backends
+  # it can reach — there is no NAT46 — and v6 clients get a refused connection
+  # while v4 works fine.
+  ipFamily: DualStack
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: LoadBalancer
+        externalTrafficPolicy: Cluster
+        annotations:
+          io.cilium/lb-ipam-ips: "192.168.1.26,2a01:e0a:ab4:c2d0:dea6:32ff:fe46:d4b3"
+          lbipam.cilium.io/sharing-key: "edge-0"

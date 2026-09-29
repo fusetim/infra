@@ -7,4 +7,3 @@ resources:
 - oci_repository.yaml
 - helm_release.yaml
 - network_policy.yaml
-- gateway_class.yaml
