@@ -1,0 +1,7 @@
+apiVersion: v1alpha1
+kind: TimeSyncConfig
+ntp:
+  useNTS: true
+  servers:
+    - time.cloudflare.com
+    - pool.ntp.org

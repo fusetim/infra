@@ -1,6 +1,7 @@
 keys:
   - &fusetim-nemesis age1l4wrl5sk9ur0phj7wdzp9r4m93z8z2ctcytxzf0y4h7lwr5lycpq2y85t7
   - &fusetim-hermaphorite age1hpr3dzt5q2euqw8xzlrv2qp3st0363cma3rtphw46xkq0rmxgdwqg0gc8q
+  - &oikos-athena age1q209fgtg6t65splj9lt6jtt6t8pp6evaz9p0fuqueryundunrplq55l6g6
 creation_rules:
   - path_regex: talos/clusters/oikos/secrets/.*\.yaml$
     key_groups:

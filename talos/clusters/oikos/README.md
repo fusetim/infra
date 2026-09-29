@@ -29,12 +29,24 @@ $ talosctl config node <IP>
 $ talosctl kubeconfig ~/.kube/config
 ```
 
-*If it is the first node, bootstrap it:*
+*If it is the first node, bootstrap it (otherwise just enjoy!):*
 ```bash
 $ talosctl bootstrap
 ```
 
-*Once the node is up / the cluster is running, bootstrap fluxcd:*
+*Once the node is up / the cluster is running, generate/add a new sops-age key:*
+```bash
+$ sops age-keygen --output talos/clusters/oikos/secrets/sops-age.key
+```bash
+$ age-keygen -o /tmp/age.agekey
+$ cat /tmp/age.agekey | kubectl create secret generic sops-age \
+    --namespace=flux-system \
+    --from-file=age.agekey=/dev/stdin
+```
+
+*Note:* for a new node, you might need to update the key for all secrets (using `sops updatekeys`).
+
+*Then bootstrap fluxcd:*
 ```bash
 $ flux bootstrap git \
   --url=ssh://git@github.com/fusetim/infra \

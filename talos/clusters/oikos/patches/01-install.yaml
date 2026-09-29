@@ -2,5 +2,5 @@ apiVersion: v1alpha1
 kind: UnattendedInstallConfig
 provisioning:
     diskSelector:
-        match: disk.dev_path == "/dev/sda" 
+        match: disk.dev_path == "/dev/mmcblk0" 
     wipe: true

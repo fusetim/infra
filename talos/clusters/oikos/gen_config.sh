@@ -45,9 +45,9 @@ talosctl machineconfig patch \
     --patch "@$CLUSTER_PATH/patches/02-schedule-on-controlplanes.yaml" \
     --patch "@$CLUSTER_PATH/patches/03-dualstack.yaml" \
     --patch "@$CLUSTER_PATH/patches/04-hostname-athena.yaml" \
-    --patch "@$CLUSTER_PATH/patches/05-gateway-api-crd.yaml" \
-    --patch "@$CLUSTER_PATH/patches/06-cilium.yaml" \
-    --patch "@$CLUSTER_PATH/patches/07-flux.yaml" \
+    --patch "@$CLUSTER_PATH/patches/05-cilium.yaml" \
+    --patch "@$CLUSTER_PATH/patches/06-flux.yaml" \
+    --patch "@$CLUSTER_PATH/patches/07-time.yaml" \
     --output "$OUTPUT_DIR/controlplane-patched.yaml"
 
 if [ $? -ne 0 ]; then
