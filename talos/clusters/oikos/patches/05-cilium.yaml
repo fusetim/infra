@@ -6,7 +6,7 @@ $patch: delete
 ---
 apiVersion: v1alpha1
 kind: KubeProxyConfig
-enabled: false
+enabled: true
 ---
 apiVersion: v1alpha1
 kind: SysctlConfig

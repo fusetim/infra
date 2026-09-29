@@ -13,6 +13,9 @@ $ talos/clusters/oikos/gen_config.sh clean
 $ talos/clusters/oikos/gen_config.sh
 ```
 
+***Important***: You must enable kube-proxy during bootstrap for flannel to work.
+Once Cilium is running, you should disable kube-proxy and remove flannel.
+
 *Apply the configuration to the new node:*
 ```bash
 $ talosctl apply-config \
@@ -55,3 +58,21 @@ $ flux bootstrap git \
   --password=<key-passphrase> \
   --path=k8s/clusters/oikos
 ```
+
+*Now, we need to provide a temporary solution for networking (flannel),
+to let Fluxcd reconciliate and install Cilium:*
+```bash
+kubectl create ns kube-flannel
+kubectl label --overwrite ns kube-flannel pod-security.kubernetes.io/enforce=privileged
+
+helm repo add flannel https://flannel-io.github.io/flannel/
+helm install flannel --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel/flannel
+```
+
+*When cilium is ready, just remove the flannel deployment:*
+```bash
+helm uninstall flannel --namespace kube-flannel
+kubectl delete ns kube-flannel
+```
+
+*If you have not already done so, you can now disable kube-proxy.*

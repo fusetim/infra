@@ -1,0 +1,2 @@
+# values.yaml
+podCidr: 10.244.0.0/16
