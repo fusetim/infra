@@ -23,3 +23,74 @@ spec:
         protocol: UDP
       - port: "53"
         protocol: TCP
+---
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: proxy
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: envoy
+  ingress:
+  # Container ports, not the Service's: policy is enforced at the endpoint,
+  # after Cilium has rewritten 80/443/22 to the proxy's own listeners. A
+  # Gateway listener whose port is missing here is accepted, programmed, and
+  # then silently black-holed — the client just hangs on SYN. Every listener
+  # added to the Gateway (or to a ListenerSet attached to it) needs its
+  # translated port added here too.
+  - fromEntities:
+    - world
+    toPorts:
+    - ports:
+      - port: "10080"
+        protocol: TCP
+      - port: "10443"
+        protocol: TCP
+      - port: "10443"
+        protocol: UDP
+  # Workloads inside the cluster calling their own public hostname instead of a
+  # Service — basilic building a URL from FRONTEND_BASE_URL and following it,
+  # or reaching safran on storage.yewolf.fr. The name resolves to this
+  # Gateway's LoadBalancer address and Cilium translates it straight to this
+  # pod, so the connection never leaves the cluster and arrives as entity
+  # `cluster` rather than `world`. Without this it is dropped here, after the
+  # calling app's own egress policy has already allowed it, and the symptom is
+  # a hang rather than a refusal.
+  #
+  # This grants nothing that was not already reachable: these two listeners
+  # face the internet, so any pod with egress could reach them the long way
+  # round. 10022 is deliberately not included — the SSH listener has no
+  # in-cluster caller, and there is no reason to give one a path to it. The
+  # mail ports (10465, 10587, 10025) ARE included: they are also public, and
+  # in-cluster callers (vaultwarden, authentik) use them to relay SMTP through
+  # the edge proxy to stalwart rather than bypassing PROXY protocol.
+  - fromEntities:
+    - cluster
+    toPorts:
+    - ports:
+      - port: "10080"
+        protocol: TCP
+      - port: "10443"
+        protocol: TCP
+      - port: "10443"
+        protocol: UDP
+  egress:
+  - toEntities:
+    - kube-apiserver
+    toPorts:
+    - ports:
+      - port: "6443"
+        protocol: TCP
+  - toEndpoints:
+    - matchLabels:
+        io.kubernetes.pod.namespace: kube-system
+        k8s-app: kube-dns
+    toPorts:
+    - ports:
+      - port: "53"
+        protocol: UDP
+      - port: "53"
+        protocol: TCP
+  - toEntities:
+    - cluster
