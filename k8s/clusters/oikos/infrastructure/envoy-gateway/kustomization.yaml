@@ -4,6 +4,6 @@ namespace: envoy-gateway-system
 
 resources:
 - namespace.yaml
-- ocirepository.yaml
-- release.yaml
-- network-policy.yaml
+- oci_repository.yaml
+- helm_release.yaml
+- network_policy.yaml
