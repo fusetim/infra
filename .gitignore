@@ -1,0 +1,12 @@
+# Talos generated/private material
+talos/clusters/oikos/generated/*
+
+# Never accidentally commit plaintext secrets
+talos/clusters/oikos/secrets/*
+
+# Local Talos state
+.talos/
+
+# Local tooling
+.env
+.DS_Store
