@@ -66,18 +66,15 @@ spec:
 
     routingMode: tunnel
     tunnelProtocol: vxlan
-
     MTU: 1420
 
     bpf:
       masquerade: true
 
-    dnsProxy:
+    nodeIPAM:
       enabled: true
-      enableTransparentMode: true
 
-    toFQDNs:
-      enableDNSCompression: true
+    defaultLBServiceIPAM: "nodeipam"
 
     operator:
       replicas: 1
@@ -88,6 +85,3 @@ spec:
         enabled: false
       ui:
         enabled: false
-
-    socketLB:
-      hostNamespaceOnly: true

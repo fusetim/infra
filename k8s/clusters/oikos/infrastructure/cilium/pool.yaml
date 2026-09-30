@@ -1,11 +1,12 @@
-apiVersion: "cilium.io/v2alpha1"
-kind: CiliumLoadBalancerIPPool
-metadata:
-  name: envoy-athena-ips
-spec:
-  blocks:
-    - cidr: "192.168.1.26/32"
-    - cidr: "2a01:e0a:ab4:c2d0:dea6:32ff:fe46:d4b3/128"
+# Node IPAM
+#apiVersion: "cilium.io/v2alpha1"
+#kind: CiliumLoadBalancerIPPool
+#metadata:
+#  name: envoy-athena-ips
+#spec:
+#  blocks:
+#    - cidr: "192.168.1.26/32"
+#    - cidr: "2a01:e0a:ab4:c2d0:dea6:32ff:fe46:d4b3/128"
 ---
 apiVersion: "cilium.io/v2alpha1"
 kind: CiliumL2AnnouncementPolicy
