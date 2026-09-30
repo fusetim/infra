@@ -5,7 +5,19 @@ metadata:
   namespace: default
 spec:
   gatewayClassName: envoy
+  allowedListeners:
+    namespaces:
+      from: Selector 
+      selector:
+        matchLabels:
+          gateway-access: "edge-gw"
   listeners:
     - name: http
       protocol: HTTP
       port: 80
+      allowedRoutes:
+        namespaces:
+          from: Selector
+          selector:
+            matchLabels:
+              gateway-access: "edge-gw"
