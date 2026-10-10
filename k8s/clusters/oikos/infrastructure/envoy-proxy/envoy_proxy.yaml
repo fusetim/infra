@@ -16,6 +16,6 @@ spec:
       envoyService:
         type: LoadBalancer
         externalTrafficPolicy: Cluster
+        loadBalancerClass: io.cilium/node
         annotations:
-          io.cilium/lb-ipam-ips: "192.168.1.26,2a01:e0a:ab4:c2d0:dea6:32ff:fe46:d4b3"
           lbipam.cilium.io/sharing-key: "edge-0"
