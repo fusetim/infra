@@ -44,7 +44,7 @@ talosctl machineconfig patch \
     --patch "@$CLUSTER_PATH/patches/01-install.yaml" \
     --patch "@$CLUSTER_PATH/patches/02-schedule-on-controlplanes.yaml" \
     --patch "@$CLUSTER_PATH/patches/03-dualstack.yaml" \
-    --patch "@$CLUSTER_PATH/patches/04-hostname-athena.yaml" \
+    --patch "@$CLUSTER_PATH/patches/04-network-athena.yaml" \
     --patch "@$CLUSTER_PATH/patches/05-cilium.yaml" \
     --patch "@$CLUSTER_PATH/patches/06-flux.yaml" \
     --patch "@$CLUSTER_PATH/patches/07-time.yaml" \

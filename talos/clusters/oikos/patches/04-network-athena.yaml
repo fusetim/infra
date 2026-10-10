@@ -1,0 +1,17 @@
+---
+apiVersion: v1alpha1
+kind: HostnameConfig
+auto: 
+    $patch: delete
+hostname: athena.hosts.fusetim.fr
+---
+apiVersion: v1alpha1
+kind: SysctlConfig
+params:
+    # Cilium will manage the routing table and the firewall rules, therefore forwarding is enabled
+    # However, since we use IPv6 SLAAC, we need to force the acceptance of router advertisements for 
+    # the IPv6 addresses to be configured on the nodes (default accept_ra=1 only works if forwarding is disabled).
+    net.ipv4.conf.all.forwarding: "1"
+    net.ipv6.conf.all.forwarding: "1"
+    net.ipv6.conf.all.accept_ra: "2"
+    net.ipv6.conf.end0.accept_ra: "2"
