@@ -28,9 +28,11 @@ spec:
         mode: Terminate
         certificateRefs:
           - name: oikos.cloud.fusetim.fr
+            namespace: certificates
             kind: Secret
             group: ""
           - name: wildcard.oikos.cloud.fusetim.fr
+            namespace: certificates
             kind: Secret
             group: ""
       allowedRoutes:
