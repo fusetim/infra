@@ -1,7 +1,7 @@
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: ClientTrafficPolicy
 metadata:
-  name: enforce-tls-13
+  name: edge-gw-ctp
   namespace: default
 spec:
   targetRefs:
@@ -10,14 +10,4 @@ spec:
     name: edge-gw
   tls:
     minVersion: "1.3"
----
-apiVersion: gateway.envoyproxy.io/v1alpha1
-kind: ClientTrafficPolicy
-metadata:
-  name: enable-http3
-spec:
-  targetRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: edge-gw
   http3: {}
