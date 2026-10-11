@@ -4,6 +4,7 @@ resources:
   - namespace.yaml
   - cloudflare-dns-secret.yaml
   - letsencrypt-staging.yaml
+  - letsencrypt-prod.yaml
   - reference-grant.yaml
   - fusetim.fr.yaml
   - fusetim.space.yaml

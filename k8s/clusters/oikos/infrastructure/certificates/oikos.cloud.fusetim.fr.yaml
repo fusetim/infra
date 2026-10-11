@@ -5,7 +5,7 @@ metadata:
   namespace: certificates
   labels:
     use-cloudflare-solver: "true"
-    letsencrypt: "staging"
+    letsencrypt: "prod"
 spec:
   secretName: oikos.cloud.fusetim.fr
   privateKey:
@@ -23,5 +23,5 @@ spec:
   dnsNames:
     - 'oikos.cloud.fusetim.fr'
   issuerRef:
-    name: letsencrypt-dns01-staging
+    name: letsencrypt-dns01-prod
     kind: ClusterIssuer
