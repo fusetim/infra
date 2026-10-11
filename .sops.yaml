@@ -8,3 +8,9 @@ creation_rules:
     - age:
       - *fusetim-nemesis
       - *fusetim-hermaphorite
+  - path_regex: k8s/clusters/oikos/.*\.yaml$
+    key_groups:
+    - age:
+      - *fusetim-nemesis
+      - *fusetim-hermaphorite
+      - *oikos-athena

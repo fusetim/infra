@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - cloudflare-dns-secret.yaml
+  - letsencrypt-staging.yaml
+  - reference-grant.yaml
+  - fusetim.fr.yaml
+  - fusetim.space.yaml
+  - wildcard.fusetim.fr.yaml
+  - wildcard.fusetim.space.yaml
