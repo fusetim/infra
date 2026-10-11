@@ -9,3 +9,5 @@ resources:
   - fusetim.space.yaml
   - wildcard.fusetim.fr.yaml
   - wildcard.fusetim.space.yaml
+  - oikos.cloud.fusetim.fr.yaml
+  - wildcard.oikos.cloud.fusetim.fr.yaml

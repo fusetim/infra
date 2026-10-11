@@ -9,7 +9,7 @@ spec:
     - name: edge-gw
       namespace: default
   hostnames:
-    - "oikos.cloud.fusetim.fr"
+    - "podinfo.oikos.cloud.fusetim.fr"
   rules:
     - backendRefs:
         - group: ""
