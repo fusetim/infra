@@ -10,7 +10,7 @@ spec:
   secretName: wildcard.fusetim.fr
   privateKey:
     algorithm: ECDSA
-    size: 384
+    size: 256
   duration: 1080h # 45d
   renewBefore: 360h # 15d
   isCA: false
