@@ -23,5 +23,5 @@ spec:
   dnsNames:
     - '*.fusetim.space'
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-dns01-staging
     kind: ClusterIssuer
