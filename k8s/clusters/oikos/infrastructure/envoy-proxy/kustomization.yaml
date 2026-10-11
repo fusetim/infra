@@ -6,3 +6,5 @@ resources:
 - gateway_class.yaml
 - gateway.yaml
 - gateway_policy.yaml
+- namespace-common.yaml
+- redirect-https.yaml

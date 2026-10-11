@@ -7,6 +7,7 @@ metadata:
 spec:
   parentRefs:
     - name: edge-gw
+      sectionName: https
       namespace: default
   hostnames:
     - "podinfo.oikos.cloud.fusetim.fr"
