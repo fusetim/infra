@@ -6,3 +6,4 @@ resources:
   - envoy-gateway/
   - envoy-proxy/
   - cert-manager/
+  - certificates/

@@ -2,6 +2,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: fusetim.fr
+  namespace: certificates
   labels:
     use-cloudflare-solver: "true"
     letsencrypt: "staging"
