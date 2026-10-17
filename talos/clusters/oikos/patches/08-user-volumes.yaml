@@ -1,0 +1,7 @@
+# To delete this partition, remove this patch and apply the it
+# Then actually drop the partition with `talosctl wipe disk <device> --drop-partition`
+# https://docs.siderolabs.com/talos/v1.14/configure-your-talos-cluster/storage-and-disk-management/disk-management/user
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-data
+volumeType: directory

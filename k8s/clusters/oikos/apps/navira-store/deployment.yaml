@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navira-store
+  namespace: navira-store
+spec:
+  minReadySeconds: 3
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: navira-store
+  template:
+    metadata:
+      labels:
+        app: navira-store
+    spec:
+      containers:
+      - name: navira-store
+        image: ghcr.io/fusetim/navira-store:0.1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        env:
+        - name: PODINFO_UI_COLOR
+          value: "#34577c"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+        volumeMounts:
+          - name: config
+            mountPath: /app/config/config.toml
+            subPath: config.toml
+            readOnly: true
+          - name: peerid
+            mountPath: /run/navira.keys
+            subPath: navira.keys
+            readOnly: true
+          - name: data
+            mountPath: /app/config/adcar.car
+            subPath: adcar.car
+          - name: data
+            mountPath: /app/datastore
+            subPath: datastore
+      volumes:
+        - name: config
+          configMap:
+            name: navira-store-config
+        - name: peerid
+          secret:
+            secretName: navira-store-keys
+        - name: data
+          hostPath:
+            path: /var/mnt/local-data/navira-store/data/
+            type: DirectoryOrCreate
+

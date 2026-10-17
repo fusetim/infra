@@ -1,0 +1,24 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: navira-store-http
+  namespace: navira-store
+spec:
+  parentRefs:
+    - name: edge-gw
+      sectionName: https
+      namespace: default
+  hostnames:
+    - "navira.oikos.cloud.fusetim.fr"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: navira-store
+          port: 8080
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: navira-store-config
+  namespace: navira-store
+data:
+  config.toml: |
+    http_port = 8080
+    http_bind_address = ["0.0.0.0", "::"]
+    identity_key_path = "/run/navira.keys"
+    annouce_address = ["/dns6/navira.oikos.cloud.fusetim.fr/tcp/443/https", "/dns/navira.oikos.cloud.fusetim.fr/tcp/443/https"]
