@@ -66,7 +66,5 @@ spec:
           secret:
             secretName: navira-store-keys
         - name: data
-          hostPath:
-            path: /var/mnt/local-data/navira-store/data/
-            type: DirectoryOrCreate
-
+          persistentVolumeClaim:
+            claimName: navira-store-pvc

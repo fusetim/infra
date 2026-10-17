@@ -7,3 +7,4 @@ resources:
   - envoy-proxy/
   - cert-manager/
   - certificates/
+  - storage-local-static-provisioner/
