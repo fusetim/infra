@@ -53,8 +53,7 @@ spec:
             subPath: navira.keys
             readOnly: true
           - name: data
-            mountPath: /app/config/adcar.car
-            subPath: adcar.car
+            mountPath: /app/config/
           - name: data
             mountPath: /app/datastore
             subPath: datastore
