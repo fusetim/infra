@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - podinfo/
   - navira-store/
-  - yt-dl-web/
+#  - yt-dl-web/
