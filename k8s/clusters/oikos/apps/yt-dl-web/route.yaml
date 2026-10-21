@@ -1,0 +1,43 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: yt-dlp-webui
+  namespace: yt-dl-web
+spec:
+  parentRefs:
+    - name: edge-gw
+      sectionName: https
+      namespace: default
+  hostnames:
+  - "yt.fusetim.fr"
+  - "yt.fusetim.space"
+  - "yt-dl-web.oikos.cloud.fusetim.fr"
+  rules:
+  - backendRefs:
+    - group: ""
+      kind: Service
+      name: yt-dlp-webui
+      port: 80
+      weight: 1
+    timeouts:
+      request: 0s
+      backendRequest: 0s
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: SecurityPolicy
+metadata:
+  name: yt-dlp-webui-auth
+  namespace: yt-dl-web
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: yt-dlp-webui
+  basicAuth:
+    users:
+      name: "yt-dl-web-auth-secret"
+      namespace: "yt-dl-web"
