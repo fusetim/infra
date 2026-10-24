@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: navira-store
-        image: ghcr.io/fusetim/navira-store:0.1.1@sha256:2fff9ad3c4ebe5a5ca6ba3cbc883cb2c32cbd6feaa9d3e8d8259f0aaa4f5108b
+        image: ghcr.io/fusetim/navira-store:0.1.1-debug
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
