@@ -21,15 +21,17 @@ spec:
     spec:
       containers:
       - name: navira-store
-        image: ghcr.io/fusetim/navira-store:0.1.1-debug
+        image: ghcr.io/fusetim/navira-store:0.1.1
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
           containerPort: 8080
           protocol: TCP
         env:
-        - name: PODINFO_UI_COLOR
-          value: "#34577c"
+        - name: RUST_LOG
+          value: "info"
+        - name: RUST_BACKTRACE
+          value: "1"
         livenessProbe:
           httpGet:
             path: /health

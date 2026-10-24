@@ -1,0 +1,32 @@
+# it's alsways the dns
+apiVersion: v1alpha1
+kind: ResolverConfig
+# Configuration for search domains (in /etc/resolv.conf).
+searchDomains:
+    disableDefault: true # Disable default search domain configuration from hostname FQDN.
+# Configuration for host DNS resolver.
+hostDNS:
+    enabled: true # Enable host DNS caching resolver.
+    forwardKubeDNSToHost: true # Use the host DNS resolver as upstream for Kubernetes CoreDNS pods.
+    resolveMemberNames: false # Resolve member hostnames using the host DNS resolver.
+nameservers:
+    - address: 1.1.1.1 # The IP address of the nameserver.
+      protocol: DoH # A DNS protocol to use.
+      tlsServerName: cloudflare-dns.com # TLS server name to validate the nameserver certificate against.
+    - address: 1.0.0.1 # The IP address of the nameserver.
+      protocol: DoT # A DNS protocol to use.
+      tlsServerName: cloudflare-dns.com # TLS server name to validate the nameserver certificate against.
+    - address: 2606:4700:4700::1111 # The IP address of the nameserver.
+      protocol: DoT # A DNS protocol to use.
+      tlsServerName: cloudflare-dns.com # TLS server name to validate the nameserver certificate against.
+    - address: 2606:4700:4700::1001 # The IP address of the nameserver.
+      protocol: DoT # A DNS protocol to use.
+      tlsServerName: cloudflare-dns.com # TLS server name to validate the nameserver certificate against.
+    - address: 8.8.8.8 # The IP address of the nameserver.
+      protocol: DoT # A DNS protocol to use.
+      tlsServerName: dns.google # TLS server name to validate the nameserver certificate against.
+    - address: 2001:4860:4860::8888 # The IP address of the nameserver.
+      protocol: DoT # A DNS protocol to use.
+      tlsServerName: dns.google # TLS server name to validate the nameserver certificate against.
+    - address: 8.8.4.4 # Backup not encrypted DNS server.
+      protocol: Do53

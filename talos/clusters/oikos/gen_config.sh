@@ -49,6 +49,7 @@ talosctl machineconfig patch \
     --patch "@$CLUSTER_PATH/patches/06-flux.yaml" \
     --patch "@$CLUSTER_PATH/patches/07-time.yaml" \
     --patch "@$CLUSTER_PATH/patches/08-user-volumes.yaml" \
+    --patch "@$CLUSTER_PATH/patches/09-dns.yaml" \
     --output "$OUTPUT_DIR/controlplane-patched.yaml"
 
 if [ $? -ne 0 ]; then
